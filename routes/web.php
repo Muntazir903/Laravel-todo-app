@@ -4,7 +4,7 @@ use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('index');
 });
 
 Route::get('/index', [TodoController::class, "index"])->name('index');

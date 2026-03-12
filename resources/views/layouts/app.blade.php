@@ -2,11 +2,13 @@
 <html>
 
 <head>
-    <title>Todo App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Tasks</title>
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="bg-slate-950 text-slate-100 antialiased">
     @yield('content')
 </body>
 

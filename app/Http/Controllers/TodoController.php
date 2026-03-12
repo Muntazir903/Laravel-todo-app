@@ -9,21 +9,19 @@ class TodoController
 {
     public function index()
     {
-        $todos = Todo::all();
+        $todos = Todo::orderBy('created_at', 'desc')->get();
 
-        return view('index', compact('todos'));
+        return view('tasks', compact('todos'));
     }
 
     public function showTask(Todo $todo)
     {
-        return view('task', compact('todo'));
+        return view('task-edit', compact('todo'));
     }
 
     public function latestTasks()
     {
-        $todos = Todo::orderBy('created_at', 'desc')->take(10)->get();
-
-        return view('latest', compact('todos'));
+        return redirect()->route('index');
     }
 
 
@@ -37,7 +35,6 @@ class TodoController
         Todo::create([
             'title' => $request->title,
             'description' => $request->description,
-            'isavailable' => $request->isavailable
         ]);
 
         return redirect()->route('index');
@@ -45,13 +42,26 @@ class TodoController
     }
     public function updateTask(Request $request, Todo $todos)
     {
-        $isCompleted = $request->has('iscompleted') ? 1 : 0;
+        $data = [];
 
-        $todos->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'iscompleted' => $isCompleted,
-        ]);
+        if ($request->has('title')) {
+            $request->validate([
+                'title' => 'required',
+            ]);
+            $data['title'] = $request->title;
+        }
+
+        if ($request->has('description')) {
+            $data['description'] = $request->description;
+        }
+
+        if ($request->has('toggle_completed')) {
+            $data['iscompleted'] = $request->has('iscompleted') ? 1 : 0;
+        }
+
+        if (!empty($data)) {
+            $todos->update($data);
+        }
 
         return redirect()->route('index');
         ;
