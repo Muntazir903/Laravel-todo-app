@@ -9,6 +9,8 @@ Route::get('/', function () {
 
 Route::get('/index', [TodoController::class, "index"])->name('index');
 
+Route::get('/todo/create', [TodoController::class, 'create'])->name('createTask');
+
 Route::get('/todo/{todo}/edit', [TodoController::class, 'showTask'])->name('showTask');
 
 Route::get('/todo/latest', [TodoController::class, 'latestTasks'])->name('latestTasks');

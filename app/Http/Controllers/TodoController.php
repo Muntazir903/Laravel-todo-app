@@ -14,6 +14,11 @@ class TodoController
         return view('tasks', compact('todos'));
     }
 
+    public function create()
+    {
+        return view('task-create');
+    }
+
     public function showTask(Todo $todo)
     {
         return view('task-edit', compact('todo'));
