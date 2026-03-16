@@ -24,8 +24,10 @@ Route::patch('/todo/{todos}', [TodoController::class, 'updateTask'])->name('upda
 Route::delete('/todo/{todos}', [TodoController::class, 'destory']);
 
 
-Route::get('', [UserController::class, 'index'])->name('index');
+Route::get('', [UserController::class, 'viewRegister'])->name('viewRegister');
 
 Route::post('/register', [UserController::class, 'register'])->name('register');
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
+
+Route::get('/index2', [UserController::class, 'viewLogin'])->name('viewLogin');
