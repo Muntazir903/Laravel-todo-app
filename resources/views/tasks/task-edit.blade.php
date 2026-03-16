@@ -24,7 +24,9 @@
 
             <div
                 class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_20px_80px_-30px_rgba(88,80,236,0.45)] backdrop-blur sm:p-6">
-                <div class="pointer-events-none absolute inset-0 bg-linear-to-r from-purple-500/10 via-transparent to-blue-500/10"></div>
+                <div
+                    class="pointer-events-none absolute inset-0 bg-linear-to-r from-purple-500/10 via-transparent to-blue-500/10">
+                </div>
                 <div class="flex flex-wrap items-center justify-center gap-2 mb-6 sm:justify-start">
                     <span
                         class="text-xs px-2 py-0.5 rounded-full {{ $todo->iscompleted ? 'bg-emerald-500/20 text-emerald-200' : 'bg-purple-500/20 text-purple-200' }}">
@@ -59,7 +61,7 @@
                             class="group relative w-full overflow-hidden rounded-xl bg-purple-500/80 px-4 py-2.5 text-base font-semibold text-white shadow-lg shadow-purple-500/30 transition hover:-translate-y-0.5 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-300/60 sm:w-auto sm:text-sm">
                             Save changes
                             <span
-                                class="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/30 to-white/0 opacity-0 transition group-hover:translate-x-full group-hover:opacity-100"></span>
+                                class="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-white/0 via-white/30 to-white/0 opacity-0 transition group-hover:translate-x-full group-hover:opacity-100"></span>
                         </button>
                         <a href="{{ route('index') }}"
                             class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-base font-semibold text-slate-200 transition hover:bg-white/10 sm:w-auto sm:text-sm">

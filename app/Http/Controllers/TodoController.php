@@ -11,17 +11,17 @@ class TodoController
     {
         $todos = Todo::orderBy('created_at', 'desc')->get();
 
-        return view('tasks', compact('todos'));
+        return view('tasks/tasks', compact('todos'));
     }
 
     public function create()
     {
-        return view('task-create');
+        return view('tasks/task-create');
     }
 
     public function showTask(Todo $todo)
     {
-        return view('task-edit', compact('todo'));
+        return view('tasks/task-edit', compact('todo'));
     }
 
     public function latestTasks()

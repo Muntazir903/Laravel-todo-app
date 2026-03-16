@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,3 +22,10 @@ Route::post('/todo/', [TodoController::class, 'addTask'])->name('addTask');
 Route::patch('/todo/{todos}', [TodoController::class, 'updateTask'])->name('updateTask');
 
 Route::delete('/todo/{todos}', [TodoController::class, 'destory']);
+
+
+Route::get('', [UserController::class, 'index'])->name('index');
+
+Route::post('/register', [UserController::class, 'register'])->name('register');
+
+Route::post('/login', [UserController::class, 'login'])->name('login');
