@@ -10,14 +10,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('todos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->boolean('iscompleted')->default(false);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('todos')) {
+            Schema::create('todos', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id');
+                $table->string('title');
+                $table->text('description')->nullable();
+                $table->boolean('iscompleted')->default(false);
+                $table->timestamps();
+            });
+        }
     }
 
     /**
