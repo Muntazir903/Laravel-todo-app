@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Hash;
 class UserController
 {
 
-public function index()
-{
-    return view("tasks/tasks");
-}
+    public function index()
+    {
+        return view("tasks/tasks");
+    }
     public function viewRegister()
     {
         return view("users/user-register");
@@ -33,11 +33,13 @@ public function index()
             'password' => ['required', 'string', 'min:6'],
         ]);
 
-        if (!Auth::attempt([
-            'username' => $credentials['username'],
-            'email' => $credentials['email'],
-            'password' => $credentials['password'],
-        ])) {
+        if (
+            !Auth::attempt([
+                'username' => $credentials['username'],
+                'email' => $credentials['email'],
+                'password' => $credentials['password'],
+            ])
+        ) {
             return back()
                 ->withErrors(['email' => 'The provided credentials are incorrect.'])
                 ->withInput();
@@ -57,9 +59,9 @@ public function index()
         ]);
 
         $user = User::create([
-            'username'=> $validated['username'],
+            'username' => $validated['username'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'password' => $validated['password'],
         ]);
 
         Auth::login($user);
