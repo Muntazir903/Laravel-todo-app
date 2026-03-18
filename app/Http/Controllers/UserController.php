@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class UserController
 {
@@ -33,18 +32,18 @@ class UserController
             'password' => ['required', 'string', 'min:6'],
         ]);
 
-        if (
-            !Auth::attempt([
-                'username' => $credentials['username'],
-                'email' => $credentials['email'],
-                'password' => $credentials['password'],
-            ])
-        ) {
+        $user = User::where('username', $credentials['username'])
+            ->where('email', $credentials['email'])
+            ->where('password', $credentials['password'])
+            ->first();
+
+        if (!$user) {
             return back()
                 ->withErrors(['email' => 'The provided credentials are incorrect.'])
                 ->withInput();
         }
 
+        Auth::login($user);
         $request->session()->regenerate();
 
         return redirect()->route('index');
@@ -64,7 +63,6 @@ class UserController
             'password' => $validated['password'],
         ]);
 
-        Auth::login($user);
         $request->session()->regenerate();
 
         return redirect()->route('index');

@@ -5,7 +5,7 @@
     "scripts": {
         "docker:up": "docker compose up -d",
         "docker:down": "docker compose down",
-        "start:all": "npm run docker:down && npm run docker:up && composer run dev",
+        "start:all": "npm run docker:down && npm run docker:up && concurrently -k \"php artisan serve\" \"npm run dev\"",
         "build": "vite build",
         "dev": "vite"
     },
