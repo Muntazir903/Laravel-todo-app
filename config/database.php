@@ -43,20 +43,19 @@ return [
             'transaction_mode' => 'DEFERRED',
         ],
 
-       'mysql' => [
-    'driver' => 'mysql',
-    'host' => env('MYSQLHOST'),
-    'port' => env('MYSQLPORT', 3306),
-    'database' => env('MYSQLDATABASE'),
-    'username' => env('MYSQLUSER'),
-    'password' => env('MYSQLPASSWORD'),
-
-    'charset' => 'utf8mb4',
+   'mysql' => [
+    'driver'    => 'mysql',
+    'url'       => env('DB_URL'),
+    'host'      => env('DB_HOST', '127.0.0.1'),
+    'port'      => env('DB_PORT', 3306),
+    'database'  => env('DB_DATABASE', ''),
+    'username'  => env('DB_USERNAME', ''),
+    'password'  => env('DB_PASSWORD', ''),
+    'charset'   => 'utf8mb4',
     'collation' => 'utf8mb4_unicode_ci',
-    'prefix' => '',
-    'strict' => true,
+    'prefix'    => '',
+    'strict'    => true,
 ],
-
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
